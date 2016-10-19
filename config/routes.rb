@@ -65,18 +65,16 @@ Rails.application.routes.draw do
 
 
 ################### PRODUCTS ####################
+  resources :products, except: [:index]
+  # get 'products/new', to: "products#new", as: :new_product
 
-  get 'products/new'
+  # post 'products', to: 'products#create', as: :products
 
-  get 'products/create'
-
-  get 'products/destroy'
-
-  get 'products/edit'
-
-  get 'products/update'
-
-  get 'products/show'
+  # delete 'products/:id', to: "products#destroy", as: :product
+  # put/patch 'products/:id', to: "products#update"
+  # get 'products/:id', to: "products#show"
+  
+  # get 'products/:id/edit', to: "products#edit", as: :edit_product
 ################### PRODUCTS ####################
 
 
@@ -93,7 +91,7 @@ Rails.application.routes.draw do
   get 'users/update'
 
   get 'users/destroy'
-################### USERS ####################  
+################### USERS ####################
 
 
   get "/auth/:provider/callback" =>  "sessions#create"
