@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  
  ################### HOMEPAGES ####################
   root to: 'homepages#index', as: 'index'
 
