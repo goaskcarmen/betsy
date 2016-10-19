@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
  ################### HOMEPAGES ####################
-  root to: 'homepages#index', as: 'index'
+  root to: 'homepages#index'
 
   get 'homepages/index'
 
@@ -59,6 +59,8 @@ Rails.application.routes.draw do
   get 'sessions/create'
 
   get 'sessions/destroy'
+
+  get "/auth/:provider/callback" =>  "sessions#create"
 
 ################### SESSIONS ####################
 
