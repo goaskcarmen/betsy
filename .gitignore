@@ -20,3 +20,5 @@
 # Hide the .env. It's full of secrets!
 /.env
 ##### ADDED ITEM ########
+
+.DS_Store
