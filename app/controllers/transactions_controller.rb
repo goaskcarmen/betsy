@@ -24,7 +24,7 @@ class TransactionsController < ApplicationController
 
   private
   def user_params
-    params.require(:transaction).permit(:client_name, :client_email, :status, :)
+    params.require(:transaction).permit(:client_name, :client_email, :status, :client_address, :client_cc_num, :client_cc_exp)
   end
 
 end

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 ################### TRANSACTIONS ####################
   get 'transactions/new' => 'transactions#new', as: 'new_transaction'
 
-  get 'transactions/create'
+  post 'transactions/create' => 'transactions#create', as: 'create_transaction'
 
   get 'transactions/show'
 
