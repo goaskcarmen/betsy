@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
 
 ################### TRANSACTIONS ####################
-  get 'transactions/new'
+  get 'transactions/new' => 'transactions#new', as: 'new_transaction'
 
   get 'transactions/create'
 
@@ -93,7 +93,7 @@ Rails.application.routes.draw do
   get 'users/update'
 
   get 'users/destroy'
-################### USERS ####################  
+################### USERS ####################
 
 
   get "/auth/:provider/callback" =>  "sessions#create"
