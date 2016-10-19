@@ -11,6 +11,7 @@
   <% if session[:user_id] == nil %>
     <!-- = User.find_by(uid: auth_hash[:uid], provider: 'github') -->
   <%= link_to "log in via github", "/auth/github" %>
+  <%= link_to "register", "/users/new" %>
   <% else %>
   <%= link_to "logout", 'sessions/destroy' %>
   <% end %>
