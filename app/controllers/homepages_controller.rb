@@ -1,4 +1,5 @@
 class HomepagesController < ApplicationController
+  before_action :find_all_product, only: [:index, :show_all_products]
   def index
   end
 
@@ -9,5 +10,10 @@ class HomepagesController < ApplicationController
   end
 
   def show_by_merchant
+  end
+
+  private
+  def find_all_product
+    @product = Product.all
   end
 end

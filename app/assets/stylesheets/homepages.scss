@@ -1,3 +1,13 @@
 // Place all the styles related to the homepages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index-photo{
+  width: 200px;
+  height: 120px;
+}
+
+.index-photo img {
+    width: 100%;
+    height: auto;
+}

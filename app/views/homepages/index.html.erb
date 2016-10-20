@@ -8,3 +8,10 @@
 <% if flash[:notice] %>
 <p class = "flash-notice"><%= flash[:notice] %></p>
 <% end %>
+
+<!-- ########### Products ################### -->
+<% @product.each do |p| %>
+  <div class="index-photo">
+    <img src="<%= p.photo_url %>", title="<%= p.name %>", alt="<%= p.name %>">
+  </div>
+<% end %>
