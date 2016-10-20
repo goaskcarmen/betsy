@@ -10,4 +10,6 @@ class Product < ActiveRecord::Base
   has_many :reviews
 
   belongs_to :user
+
+  validates :name, :unit_price, :quantity, presence: true
 end
