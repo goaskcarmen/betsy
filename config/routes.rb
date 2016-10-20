@@ -86,9 +86,11 @@ Rails.application.routes.draw do
 
   get 'users/logged_in_index'
 
-  get 'users/new'
+  get 'users/:user/new' => "users#new"
 
-  get 'users/create'
+  get 'users/new' => "users#new"
+
+  post 'users/create'
 
   get 'users/edit'
 
