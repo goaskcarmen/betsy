@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  
  ################### HOMEPAGES ####################
   root to: 'homepages#index', as: 'index'
 
@@ -86,19 +88,17 @@ Rails.application.routes.draw do
 
   get 'users/logged_in_index'
 
-  get 'users/new'
 
-  get 'users/create'
+  get 'users/new' => "users#new"
 
-  get 'users/edit'
+  post 'users/create'
 
-  get 'users/update'
+  get 'users/:id/edit' => "users#edit"
+
+  put 'users/:id/update' => "users#update", as: "users_update"
 
   get 'users/destroy'
 ################### USERS ####################
-
-
-  get "/auth/:provider/callback" =>  "sessions#create"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
