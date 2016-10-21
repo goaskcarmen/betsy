@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
+    before_action :set_current_user, only: [:logged_in_index, :new, :edit, :update, :destroy]
+
+
   def logged_in_index
-    @user=User.find_by(uid: auth_hash["uid"], provider: 'github')
   end
 
   def new
-    auth_hash=session[:auth_hash]
-    if User.find_by(uid: auth_hash["uid"], provider: 'github')
+    if @user
       flash[:notice]="You are already registered with github"
-      return redirect_to root_path
+      return redirect_to index_path
     end
 
     if auth_hash == nil 
@@ -35,6 +36,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    flash[:notice]= "details failed to save"
+    @user.name = params[:user][:name]
+    @user.email = params[:user][:email]
+    flash[:notice]= "information updated" if @user.save 
   end
 
   def destroy
@@ -45,5 +50,10 @@ class UsersController < ApplicationController
 
   def logout
   end
+  private
 
+  def set_current_user
+    auth_hash=session[:auth_hash]
+    @user=User.find_by(uid: auth_hash["uid"], provider: 'github')
+  end
 end

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     #flash is a built in thing that is saved in the session hash#
 
     flash[:notice] = "login failed!" #this is just setting the value of the flash notice, it will not show up unless we hit the redirect in the next line. i.e. flash notices only come up if things go wrong#
-    return redirect to root_path unless auth_hash['uid']
+    return redirect to index_path unless auth_hash['uid']
     @user = User.find_by(uid: auth_hash[:uid], provider: 'github')
 
     if @user.nil?
@@ -21,12 +21,12 @@ class SessionsController < ApplicationController
     session[:user_id] = @user.id
 
     flash[:notice] = "successfully logged in!"
-    redirect_to root_path
+    redirect_to index_path
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path
+    redirect_to index_path
   end
 
 end

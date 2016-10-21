@@ -13,6 +13,7 @@
   <%= link_to "register via github", "/users/new" %>
   <% else %>
   <%= link_to "logout", 'sessions/destroy' %>
+  <%= link_to "My Account", "/users/logged_in_index" %>
   <% end %>
 </header>
 

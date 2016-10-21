@@ -1,2 +1,4 @@
 <h1>My Account</h1>
-<%= button_to("Upvote", {action: "upvote", id: @this_book.id}, {method: :patch, :class=> "button success"}) %>
+ <%= link_to "Edit my account", "/users/#{@user.id}/edit" %>
+ <%= link_to "Add a product", "/products/new" %>
+
