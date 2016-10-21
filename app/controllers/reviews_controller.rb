@@ -1,8 +1,6 @@
 class ReviewsController < ApplicationController
 
   before_action :find_product, only: [:new, :create, :edit]
-  before_action :product_params, only: [:new, :create, :edit]
-
 
   def new
     @review = Review.new
@@ -10,10 +8,10 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @reivew.product_it = find_product.id
+    # @reivew.product_it = find_product.id
     @review.save
     if @review.save
-      redirect_to product_path
+      redirect_to product_path(@product.id)
     else
       render :template => 'products/show/:id'
     end
@@ -29,15 +27,11 @@ class ReviewsController < ApplicationController
   private
 
   def find_product
-    @product = Product.find(product_params[:id].to_i)
-  end
-
-  def product_params
-    params.require(:product).permit(:id, :name, :description, :unit_price, :photo_url, :quantity)
+    @product = Product.find(params[:product_id].to_i)
   end
 
   def review_params
-    params.require(:review).permit(:rating, :content).merge(user_id: session[:user_id], product_id: find_product.id)
+    params.require(:review).permit(:rating, :content).merge(user_id: session[:user_id], product_id: @product.id)
     # need to add ", product_id: ____________" in the merge parens in order to associate to a product.
   end
 
