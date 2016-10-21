@@ -10,10 +10,9 @@ class CartsController < ApplicationController
     @cart_product.product_quantity = 1
     @cart_product.product_id = @product.id
     @cart_product.cart_id = session[:cart_id]
+    @cart_product.save
 
 
-    puts 'HTHTHTHTHTHTHTHTH'
-    puts session[:cart_id]
     redirect_to(:back)
   end
 
@@ -27,6 +26,12 @@ class CartsController < ApplicationController
   end
 
   def show
+    @products = Product.all
+    @cartproducts = CartProduct.all
+    @cart = CartProduct.where(cart_id: session[:cart_id])
+
+
+
   end
 
   def destroy

@@ -11,7 +11,7 @@
 <p><%= @product.description %></p>
 
 <%= button_to "Add item to cart", create_cart_product_path(@product), method: :post %>
-
+<%= button_to "View my cart", show_cart_product_path, method: :get %>
 <!-- Insert reviews here -->
 
 

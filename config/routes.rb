@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   get 'carts/update'
 
-  get 'carts/show'
+  get 'carts/show' => 'carts#show', as: 'show_cart_product'
 
   get 'carts/destroy'
 
