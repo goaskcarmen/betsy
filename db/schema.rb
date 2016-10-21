@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20161021190142) do
     t.integer  "product_quantity"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "product_id"
+    t.integer  "cart_id"
   end
 
   create_table "carts", force: :cascade do |t|
