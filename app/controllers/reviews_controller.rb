@@ -1,4 +1,9 @@
 class ReviewsController < ApplicationController
+
+  before_action :find_product, only: [:new, :create, :edit]
+  before_action :product_params, only: [:new, :create, :edit]
+
+
   def new
     @review = Review.new
   end
@@ -32,8 +37,8 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-      params.require(:review).permit(:rating, :content).merge(user_id: session[:user_id], product_id: find_product.id)
-      # need to add ", product_id: ____________" in the merge parens in order to associate to a product.
+    params.require(:review).permit(:rating, :content).merge(user_id: session[:user_id], product_id: find_product.id)
+    # need to add ", product_id: ____________" in the merge parens in order to associate to a product.
   end
 
 end

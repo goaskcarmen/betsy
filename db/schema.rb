@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20161021190142) do
 
-
   create_table "cart_products", force: :cascade do |t|
     t.integer  "product_quantity"
     t.datetime "created_at",       null: false
@@ -55,11 +54,8 @@ ActiveRecord::Schema.define(version: 20161021190142) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
     t.integer  "product_id"
-=======
     t.integer  "user_id"
->>>>>>> master
   end
 
   create_table "transaction_products", force: :cascade do |t|
