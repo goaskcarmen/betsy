@@ -10,8 +10,11 @@
 <% end %>
 
 <!-- ########### Products ################### -->
-<% @product.each do |p| %>
-  <div class="index-photo">
-    <img src="<%= p.photo_url %>", title="<%= p.name %>", alt="<%= p.name %>">
-  </div>
-<% end %>
+
+<div class="index-photo">
+  <% @product.each do |p| %>
+
+    <%= link_to image_tag(p.photo_url, :title => p.name, :alt => p.name), product_path(p), method: :get %>
+
+  <% end %>
+</div>
