@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   
  ################### HOMEPAGES ####################
-  root to: 'homepages#index'
+  root to: 'homepages#index', as: 'index'
 
   get 'homepages/index'
 
@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   # delete 'products/:id', to: "products#destroy", as: :product
   # put/patch 'products/:id', to: "products#update"
   # get 'products/:id', to: "products#show"
-  
+
   # get 'products/:id/edit', to: "products#edit", as: :edit_product
 ################### PRODUCTS ####################
 
