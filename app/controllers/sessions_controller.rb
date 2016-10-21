@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def create
     auth_hash = request.env['omniauth.auth']
 
@@ -22,8 +23,7 @@ class SessionsController < ApplicationController
 
     flash[:notice] = "successfully logged in!"
     redirect_to root_path
-
-     
+    
 
   end
 
