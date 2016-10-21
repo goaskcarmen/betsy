@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def logged_in_index
+    @user=User.find_by(uid: auth_hash["uid"], provider: 'github')
   end
 
   def new
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
       flash[:notice]="You are already registered with github"
       return redirect_to root_path
     end
-    
+
     if auth_hash == nil 
       return redirect_to "/auth/github" 
     end
