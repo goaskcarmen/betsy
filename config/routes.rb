@@ -31,11 +31,13 @@ Rails.application.routes.draw do
 
 ################### CARTS ####################
 
+  post 'carts/:id/create' => 'carts#create', as: 'create_cart_product'
+
   get 'carts/edit'
 
   get 'carts/update'
 
-  get 'carts/show'
+  get 'carts/show' => 'carts#show', as: 'show_cart_product'
 
   get 'carts/destroy'
 

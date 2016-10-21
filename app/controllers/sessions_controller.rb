@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def create
     auth_hash = request.env['omniauth.auth']
     #flash is a built in thing that is saved in the session hash#
@@ -14,7 +15,9 @@ class SessionsController < ApplicationController
     session[:user_id] = @user.id
 
     flash[:notice] = "successfully logged in!"
+
     redirect_to index_path
+
   end
 
   def destroy
