@@ -1,6 +1,7 @@
 class HomepagesController < ApplicationController
   before_action :find_all_product, only: [:index, :show_all_products]
   def index
+  	@user= User.find_by(id: session[:user_id])
   end
 
   def show_by_category
@@ -14,6 +15,6 @@ class HomepagesController < ApplicationController
 
   private
   def find_all_product
-    @product = Product.all
+    @products = Product.all
   end
 end
