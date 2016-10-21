@@ -1,2 +1,10 @@
-<h1>Users#update</h1>
-<p>Find me in app/views/users/update.html.erb</p>
+<h1>Account Updated</h1>
+<ul>
+	<li><%=@user.name%></li>
+	<li><%=@user.email%></li>
+</ul>
+<%= link_to "Edit my account", "/users/#{@user.id}/edit" %>
+
+
+
+<p class = "flash-notice"><%= flash[:notice] %></p>
