@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product only: [:show, :edit, :update]
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def new
     @product = Product.new
@@ -16,12 +16,18 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    @product.destroy
+
+    if @artist.destroy
+      redirect_to index_path
+    end
   end
 
   def edit
   end
 
   def update
+    @product.update(product_params)
     if @product.update(product_params)
      redirect_to product_path
     else
@@ -32,6 +38,7 @@ class ProductsController < ApplicationController
   def show
   end
 
+
   private
 
   def find_product
@@ -39,6 +46,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description)
+    params.require(:product).permit(:name, :description, :unit_price, :photo_url, :quantity)
   end
 end
