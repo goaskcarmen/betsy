@@ -14,11 +14,25 @@
 <%= button_to "View my cart", show_cart_product_path, method: :get %>
 <!-- Insert reviews here -->
 
-<%= render partial: "reviewsform" %>
+<% if flash[:notice] != nil %>
+<%= flash[:notice] %>
+<%end%>
 
+<%= render partial: "reviewsform" %>
 
 <!-- dispaly all product's reviews here using @reviews.each do  -->
 
+<% if @reviews != nil %>
+  <% @reviews.each do |r| %>
+<ul>
+  <li>rank:
+    <% (r.rating).times do %>
+      🍐
+    <% end %></li>
+  <li>review: <%= r.content %></li>
+</ul>
+  <% end %>
+<% end %>
 
 <!-- ONLY FOR MERCHANTS -->
 <%= button_to "Edit Item", edit_product_path(@product), method: :get %>

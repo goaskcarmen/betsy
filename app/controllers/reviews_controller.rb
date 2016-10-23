@@ -1,21 +1,23 @@
 class ReviewsController < ApplicationController
 
-  before_action :find_product, only: [:new, :create, :edit]
-
-  def new
-    @review = Review.new
-  end
+  before_action :find_product, only: [:new, :create, :edit, :destroy]
+  before_action :find_review, only: [:edit, :destroy]
+  # def new
+  #   @review = Review.new
+  # end
 
   def create
     @review = Review.new(review_params)
-    # @reivew.product_it = find_product.id
     @review.save
-    if @review.save
+    if @review.user_id == @product.user_id
+      flash[:notice] = " 🕵🏻 We have our eyes on you.. you can't review your own product!"
+      @review.destroy
+    end
+    if @review.id
       redirect_to product_path(@product.id)
     else
       render :template => 'products/show/:id'
     end
-
   end
 
   def edit
@@ -24,10 +26,22 @@ class ReviewsController < ApplicationController
   def update
   end
 
+  def destroy
+    @review.destroy
+    if @review.destroy
+      redirect_to product_path(@product.id)
+    end
+  end
+
+
   private
 
   def find_product
     @product = Product.find(params[:product_id].to_i)
+  end
+
+  def find_review
+    @review = Review.find(params[:id].to_i)
   end
 
   def review_params

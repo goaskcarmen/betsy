@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to products_path
+      redirect_to index_path
     else
       render :new
     end
@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
 
-    if @artist.destroy
+    if @product.destroy
       redirect_to index_path
     end
   end
@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :unit_price, :photo_url, :quantity)
+    params.require(:product).permit(:name, :description, :unit_price, :photo_url, :quantity).merge(user_id: session[:user_id])
   end
 
 end

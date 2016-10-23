@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  
+
  ################### HOMEPAGES ####################
   root to: 'homepages#index', as: 'index'
 
@@ -72,7 +72,7 @@ Rails.application.routes.draw do
 
 ################### PRODUCTS ####################
   resources :products, except: [:index] do
-    resources :reviews, only: [:new, :create, :edit, :update]
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
   # get 'products/new', to: "products#new", as: :new_product
 

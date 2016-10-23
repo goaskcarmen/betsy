@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-
-
+# run this in the terminal in order to get bundle install to work
+# bundle install --without production
 gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 
