@@ -19,7 +19,7 @@ class SessionsControllerTest < ActionController::TestCase
 
 
 
-  test "Can login a user who is already registered" do
+  test "Can log in a user who is already registered" do
     registered_user=User.new
     registered_user.uid   = '123545'
     registered_user.provider = 'github'
