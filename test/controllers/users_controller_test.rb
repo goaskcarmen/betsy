@@ -22,6 +22,14 @@ class UsersControllerTest < ActionController::TestCase
       assert_redirected_to "blah"
     end
 
+     test "get redirected to the page they were on if they are a current user" do
+      request.env["HTTP_REFERER"]="blah"
+      set_auth_hash
+      session[:user_id]=users(:current_user).id
+      get :new
+      assert_redirected_to "blah"
+    end
+
     test "can create/register a new user" do
       assert_difference('User.count', 1) do
         set_auth_hash
