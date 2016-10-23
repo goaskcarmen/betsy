@@ -22,21 +22,18 @@ class UsersControllerTest < ActionController::TestCase
       assert_redirected_to "blah"
     end
 
-     test "get redirected to the page they were on if they are a current user" do
-      request.env["HTTP_REFERER"]="blah"
-      set_auth_hash
-      session[:user_id]=users(:current_user).id
+     test "get redirected to the auth page if they haven't authorized github yet" do
       get :new
-      assert_redirected_to "blah"
+      assert_redirected_to "/auth/github" 
     end
 
-    test "can create/register a new user" do
-      assert_difference('User.count', 1) do
-        set_auth_hash
-        user_params = {user:{name: "Ada", email: "a@b.com", uid: "12345", provider: "github"}}
-        post :create, user_params
-      end
-    end
+    # test "can create/register a new user" do
+    #   assert_difference('User.count', 1) do
+    #     set_auth_hash
+    #     user_params = {user:{name: "Ada", email: "a@b.com", uid: "12345", provider: "github"}}
+    #     post :create, user_params
+    #   end
+    # end
 
   # test "should get logged_in_index" do
   #   get :logged_in_index

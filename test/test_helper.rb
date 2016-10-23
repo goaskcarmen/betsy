@@ -1,6 +1,5 @@
 require 'simplecov'
 SimpleCov.start 'rails'
-Rails.application.eager_load!
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
