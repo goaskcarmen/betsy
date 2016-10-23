@@ -3,11 +3,10 @@ class SessionsController < ApplicationController
   def create
     auth_hash = request.env['omniauth.auth']
     #flash is a built in thing that is saved in the session hash#
-
     flash[:notice] = "login failed!" #this is just setting the value of the flash notice, it will not show up unless we hit the redirect in the next line. i.e. flash notices only come up if things go wrong#
+    puts auth_hash
     return redirect to index_path unless auth_hash['uid']
     @user = User.find_by(uid: auth_hash[:uid], provider: 'github')
-
     if @user.nil?
       # User doesn't match anything in the DB.
       # Attempt to create a new user.

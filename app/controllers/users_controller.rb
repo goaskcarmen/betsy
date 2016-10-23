@@ -8,10 +8,10 @@ class UsersController < ApplicationController
   def new
     if @user
       flash[:notice]="You are already registered with github"
-      return redirect_to index_path
+      return redirect_to :back
     end
 
-    if auth_hash == nil 
+    if session[:auth_hash] == nil 
       return redirect_to "/auth/github" 
     end
     @user=User.build_from_github(session[:auth_hash])
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:notice] = "successfully logged in!"
     end
-    return redirect_to root_path 
+    return redirect_to index_path 
   end
 
   def edit
@@ -53,7 +53,6 @@ class UsersController < ApplicationController
   private
 
   def set_current_user
-    auth_hash=session[:auth_hash]
-    @user=User.find_by(uid: auth_hash["uid"], provider: 'github')
+    @user= User.find_by(id: session[:user_id])
   end
 end
