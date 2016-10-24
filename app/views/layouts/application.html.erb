@@ -11,12 +11,12 @@
     <h1><%= link_to "Besty", index_path %></h1>
     <p>The best things come in pairs.</p>
   <% if session[:user_id] == nil %>
-  <%= link_to "log in via github", "/auth/github" %>
-  <%= link_to "register via github", "/users/new" %>
+    <%= link_to "log in via github", "/auth/github" %>
+    <%= link_to "register via github", "/users/new" %>
   <% else %>
-  <%= link_to "logout", sessions_destroy_path,:method => :delete %>
+    <%= link_to "logout", sessions_destroy_path,:method => :delete %>
                       <!--if you do "sessions/destroy" here you will get a routing error in any page other than the homepage-->
-  <%= link_to "My Account", "/users/logged_in_index" %>
+    <%= link_to "My Account", "/users/logged_in_index" %>
   <% end %>
 </header>
 
