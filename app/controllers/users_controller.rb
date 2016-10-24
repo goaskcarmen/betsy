@@ -13,8 +13,8 @@ class UsersController < ApplicationController
       return redirect_to :back
     end
 
-    if session[:auth_hash] == nil 
-      return redirect_to "/auth/github" 
+    if session[:auth_hash] == nil
+      return redirect_to "/auth/github"
     end
     @user=User.build_from_github(session[:auth_hash])
   end
@@ -26,12 +26,12 @@ class UsersController < ApplicationController
     @user.email = params[:user][:email]
     @user.uid = params[:user][:uid]
     @user.provider = params[:user][:provider]
-    
+
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "successfully logged in!"
     end
-    return redirect_to index_path 
+    return redirect_to index_path
   end
 
   def edit
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     flash[:notice]= "details failed to save"
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
-    flash[:notice]= "information updated" if @user.save 
+    flash[:notice]= "information updated" if @user.save
   end
 
   def destroy

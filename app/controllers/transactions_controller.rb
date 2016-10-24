@@ -1,18 +1,46 @@
 class TransactionsController < ApplicationController
   def new
-    @transaction = Transaction.new
+    cart_items = CartProduct.where(cart_id: session[:cart_id])
+    if cart_items.all.length != 0
+      @transaction = Transaction.new
+    else
+      flash[:notice] = "You have no items to checkout!"
+      redirect_to(:back)
+    end
   end
 
   def create
-    @mytransaction = Transaction.new
-    @mytransaction.client_name = params[:transaction][:client_name]
-    @mytransaction.client_email = params[:transaction][:client_email]
-    @mytransaction.client_address = params[:transaction][:client_address]
-    @mytransaction.client_cc_num = params[:transaction][:client_cc_num].slice(-4..-1)
-    @mytransaction.client_cc_exp = params[:transaction][:client_cc_exp]
-    @mytransaction.status = nil
-    @mytransaction.total_price = nil
-    # @mytransaction.save
+
+      @transaction = Transaction.new
+      @transaction.client_name = params[:transaction][:client_name]
+      @transaction.client_email = params[:transaction][:client_email]
+      @transaction.client_address = params[:transaction][:client_address]
+      @transaction.client_cc_num = params[:transaction][:client_cc_num].slice(-4..-1)
+      @transaction.client_cc_exp = params[:transaction][:client_cc_exp]
+      @transaction.status = "paid"
+      @transaction.total_price = nil
+      @transaction.save
+
+      @cart = CartProduct.where(cart_id: session[:cart_id])
+
+      @cart.each do |i|
+        q = i.product_quantity
+        p = Product.find(i.product_id)
+        # m = User.find(p.user_id)
+        @tp = TransactionProduct.new
+        @tp.product_name = p.name
+        @tp.product_unit_price = p.unit_price
+        @tp.product_description = p.description
+        @tp.product_quantity = q
+        @tp.product_total_price = q*p.unit_price
+        # @tp.merchant_email = m.email
+        @tp.mark_shipped = false
+        # @tp.merchant_name = m.name
+        @tp.product_id = p.id
+        @tp.order_id = @transaction.id
+        @tp.save
+        i.destroy
+      end
 
   end
 

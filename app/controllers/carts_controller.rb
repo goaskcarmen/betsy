@@ -51,6 +51,19 @@ class CartsController < ApplicationController
     redirect_to(:back)
   end
 
+  def empty
+    @cart = CartProduct.where(cart_id: session[:cart_id])
+    if @cart.length != 0
+      @cart.each do |i|
+        i.destroy
+      end
+    else
+      flash[:notice] = "You cannot empty and already empty cart!"
+    end
+
+    redirect_to(:back)
+  end
+
   private
   def user_params
     params.require(:cart_product).permit(:product_quantity, :product_id, :cart_id)
