@@ -8,12 +8,15 @@ class CartsController < ApplicationController
       end
 
       product_found = false
-      customer_cart = CartProduct.where(cart_id: session[:cart_id])
-      customer_cart.each do |i|
-        if i.product_id == @product.id
+      @cart = CartProduct.where(cart_id: session[:cart_id])
+      @cart.each do |i|
+        if i.product_id == @product.id && i.product_quantity < @product.quantity
           i.product_quantity += 1
           i.save
           product_found = true
+        elsif i.product_quantity == @product.quantity
+          product_found = true
+          flash[:notice] = "There are only #{@product.quantity} item(s) in stock!"
         end
       end
 
@@ -61,6 +64,29 @@ class CartsController < ApplicationController
       flash[:notice] = "You cannot empty and already empty cart!"
     end
 
+    redirect_to(:back)
+  end
+
+  def increase
+    @cart_product = CartProduct.find(params[:id].to_i)
+    @product = Product.find(@cart_product.product_id)
+    if @cart_product.product_quantity < @product.quantity
+      @cart_product.product_quantity += 1
+      @cart_product.save
+    elsif @cart_product.product_quantity == @product.quantity
+      flash[:notice] = "There are only #{@product.quantity} item(s) in stock!"
+    end
+    redirect_to(:back)
+  end
+
+  def decrease
+    @cart_product = CartProduct.find(params[:id].to_i)
+    if @cart_product.product_quantity > 1
+      @cart_product.product_quantity -= 1
+      @cart_product.save
+    elsif @cart_product.product_quantity == 1
+      @cart_product.destroy
+    end
     redirect_to(:back)
   end
 

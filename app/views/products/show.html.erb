@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+<p class = "flash-notice"><%= flash[:notice] %></p>
+
+<% end %>
+
 <h1><%= @product.name %></h1>
 <p>Price: $<%= @product.unit_price %>
 <img src="<%= @product.photo_url %>", alt="<%= @product.name %>">
