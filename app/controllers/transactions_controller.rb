@@ -39,6 +39,8 @@ class TransactionsController < ApplicationController
         @tp.product_id = p.id
         @tp.order_id = @transaction.id
         @tp.save
+        p.quantity -= q
+        p.save
         i.destroy
       end
 
