@@ -1,2 +1,14 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<h1>Your Cart</h1>
+
+<tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Price</th>
+</tr>
+<%   @cart.each do |i| %>
+<tr>
+    <td></td>
+    <td> <%= i.product_quantity %></td>
+    <td></td>
+</tr>
+<% end %>

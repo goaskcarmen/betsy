@@ -8,11 +8,14 @@
 </head>
 <body>
   <header>
+    <h1><%= link_to "Besty", index_path %></h1>
+    <p>The best things come in pairs.</p>
   <% if session[:user_id] == nil %>
-    <!-- = User.find_by(uid: auth_hash[:uid], provider: 'github') -->
   <%= link_to "log in via github", "/auth/github" %>
+  <%= link_to "register via github", "/users/new" %>
   <% else %>
   <%= link_to "logout", 'sessions/destroy' %>
+  <%= link_to "My Account", "/users/logged_in_index" %>
   <% end %>
 </header>
 
