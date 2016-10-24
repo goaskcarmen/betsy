@@ -6,13 +6,15 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.product = find_product
-    @review.save
+    if @review.user_id == @product.user_id
+      flash[:notice] = " <U+1F575><U+1F3FB> We have our eyes on you.. you can't review your own product!"
+      return redirect_to product_path(@product.id)
+    end
     if @review.save
       redirect_to product_path(@product.id)
     else
       render :template => "products/show/#{@product.id}"
     end
-
   end
 
   def edit
