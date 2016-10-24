@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       flash[:notice]="please log in to view your account page"
       return redirect_to :back
     end
-
+    raise
    @reviews = @user.reviews
   end
 
