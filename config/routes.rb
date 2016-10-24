@@ -62,7 +62,7 @@ Rails.application.routes.draw do
 
   get 'sessions/create'
 
-  get 'sessions/destroy'
+  delete 'sessions/destroy'
 
   get "/auth/:provider/callback" =>  "sessions#create"
 
