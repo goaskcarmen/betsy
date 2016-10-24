@@ -5,8 +5,7 @@ one:
   product_unit_price: 1
   product_description: MyString
   product_quantity: 1
-  merchant_last_name: MyString
-  merchant_first_name: MyString
+  merchant_name: MyString
   merchant_email: MyString
 
 two:
@@ -14,6 +13,5 @@ two:
   product_unit_price: 1
   product_description: MyString
   product_quantity: 1
-  merchant_last_name: MyString
-  merchant_first_name: MyString
+  merchant_name: MyString
   merchant_email: MyString
