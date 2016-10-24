@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  
+
  ################### HOMEPAGES ####################
   root to: 'homepages#index', as: 'index'
 
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   get 'carts/show' => 'carts#show', as: 'show_cart_product'
 
-  get 'carts/destroy'
+  delete 'carts/:id/destroy' => 'carts#destroy', as: 'destroy_cart_item'
 
 ################### CARTS ####################
 
