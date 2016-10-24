@@ -11,6 +11,7 @@ class UsersControllerTest < ActionController::TestCase
       set_auth_hash
       get :new
       assert_response :success
+      assert_template 'users/new'
     end
 
      test "get redirected to the page they were on if they are a current user" do
@@ -49,6 +50,18 @@ class UsersControllerTest < ActionController::TestCase
       #user_params = {user:{name: "Ada", email: "a@b.com", uid: "12345", provider: "github"}}
       session[:user_id]= users(:current_user).id
       get :edit, id: users(:current_user)
+      assert_response :success
+      assert_template 'users/edit'
+    end
+
+
+     ### Action: UPDATE ###
+    test "a user can update their account page" do
+      #user_params = {user:{name: "Ada", email: "a@b.com", uid: "12345", provider: "github"}}
+      @user=users(:current_user)
+      session[:user_id]= @user.id
+      user_params = {user:{name: "Hello!", email: @user.email, uid: @user.uid, provider: @user.provider}, id: @user.id}
+      put :update, user_params
       assert_response :success
     end
   # test "should get logged_in_index" do
