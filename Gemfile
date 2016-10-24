@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 #Add simplecov for testing coverage
-gem 'simplecov', :require => false, :group => :test
-gem 'pg', group: :production
+#gem 'simplecov', :require => false, :group => :test
+#gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 
 ######## ADDED GEMS #########
@@ -10,7 +10,7 @@ gem 'rails_12factor', group: :production
 gem "omniauth"
 gem "omniauth-github"
 
-gem "awesome_print"
+#gem "awesome_print"
 ######## ADDED GEMS #########
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -58,7 +58,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
