@@ -8,6 +8,8 @@
 </head>
 <body>
   <header>
+    <h1><%= link_to "Besty", index_path %></h1>
+    <p>The best things come in pairs.</p>
   <% if session[:user_id] == nil %>
   <%= link_to "log in via github", "/auth/github" %>
   <%= link_to "register via github", "/users/new" %>
