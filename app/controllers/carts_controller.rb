@@ -2,16 +2,28 @@ class CartsController < ApplicationController
   before_action :find_product, only: [:create, :edit]
 
   def create
-    if session[:cart_id] == nil
-      @cart = Cart.create
-      session[:cart_id] = @cart.id
-    end
-    @cart_product = CartProduct.new
-    @cart_product.product_quantity = 1
-    @cart_product.product_id = @product.id
-    @cart_product.cart_id = session[:cart_id]
-    @cart_product.save
+      if session[:cart_id] == nil
+        @cart = Cart.create
+        session[:cart_id] = @cart.id
+      end
 
+      product_found = false
+      customer_cart = CartProduct.where(cart_id: session[:cart_id])
+      customer_cart.each do |i|
+        if i.product_id == @product.id
+          i.product_quantity += 1
+          i.save
+          product_found = true
+        end
+      end
+
+      if !product_found
+        @cart_product = CartProduct.new
+        @cart_product.product_quantity = 1
+        @cart_product.product_id = @product.id
+        @cart_product.cart_id = session[:cart_id]
+        @cart_product.save
+      end
 
     redirect_to(:back)
   end
@@ -30,11 +42,13 @@ class CartsController < ApplicationController
     @cartproducts = CartProduct.all
     @cart = CartProduct.where(cart_id: session[:cart_id])
 
-
-
   end
 
   def destroy
+    @cart_product = CartProduct.find(params[:id].to_i)
+    @cart_product.destroy
+
+    redirect_to(:back)
   end
 
   private
