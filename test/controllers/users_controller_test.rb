@@ -26,7 +26,7 @@ class UsersControllerTest < ActionController::TestCase
       assert_redirected_to "/auth/github" 
     end
 
-    ## Action: CREATE ###
+    ### Action: CREATE ###
     test "can create/register a new user" do
       assert_difference('User.count', 1) do
         user_params = {user:{name: "Ada", email: "a@b.com", uid: "12345", provider: "github"}}
@@ -43,6 +43,14 @@ class UsersControllerTest < ActionController::TestCase
       end
     end
 
+
+    ### Action: EDIT ###
+    test "should get edit" do
+      #user_params = {user:{name: "Ada", email: "a@b.com", uid: "12345", provider: "github"}}
+      session[:user_id]= users(:current_user).id
+      get :edit, id: users(:current_user)
+      assert_response :success
+    end
   # test "should get logged_in_index" do
   #   get :logged_in_index
   #   assert_response :success
@@ -58,10 +66,7 @@ class UsersControllerTest < ActionController::TestCase
   #   assert_response :success
   # end
 
-  # test "should get edit" do
-  #   get :edit
-  #   assert_response :success
-  # end
+  
 
   # test "should get update" do
   #   get :update
