@@ -5,12 +5,12 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @reivew.product_it = find_product.id
+    @review.product = find_product
     @review.save
     if @review.save
-      redirect_to product_path
+      redirect_to product_path(@product.id)
     else
-      render :template => 'products/show/:id'
+      render :template => "products/show/#{@product.id}"
     end
 
   end
@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
   private
 
   def find_product
-    @product = Product.find(product_params[:id].to_i)
+    @product = Product.find(params[:product_id].to_i)
   end
 
   def product_params
