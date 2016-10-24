@@ -20,6 +20,8 @@
 ##### ADDED ITEM ########
 # Hide the .env. It's full of secrets!
 /.env
+#prevent test coverage from being uploaded on github
+coverage
 ##### ADDED ITEM ########
 
 .DS_Store
