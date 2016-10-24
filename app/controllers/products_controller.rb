@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
 
-    if @artist.destroy
+    if @product.destroy
       redirect_to index_path
     end
   end
