@@ -71,7 +71,9 @@ Rails.application.routes.draw do
 
 
 ################### PRODUCTS ####################
-  resources :products, except: [:index]
+  resources :products, except: [:index] do
+    resources :reviews, only: [:new, :create, :edit, :update]
+  end
   # get 'products/new', to: "products#new", as: :new_product
 
   # post 'products', to: 'products#create', as: :products

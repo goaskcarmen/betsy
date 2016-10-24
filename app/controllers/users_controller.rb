@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
 
   def logged_in_index
+   @user = User.find(params[:id])
+   @reviews = @user.reviews
   end
 
   def new
