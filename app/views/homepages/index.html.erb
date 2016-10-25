@@ -12,13 +12,24 @@
 <!--<%= to_money(400) %> that is an example of how to use to_money-->
 
 <!-- ########### Products ################### -->
+<div>
+  <h4>Show by Merchant</h4>
+  <%= form_tag show_by_merchant_path, method: :get do %>
+  <%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'name') %>
+  <%= submit_tag "Select" %>
+  <% end %>
+</div>
+
+<div>
+  <h4>Show by Category</h4>
+  <%= form_tag show_by_category_path, method: :get do %>
+  <%= select_tag "category_id", options_from_collection_for_select(@categories, 'id', 'name') %>
+  <%= submit_tag "Select" %>
+  <% end %>
+</div>
 
 <div class="index-photo">
   <% @products.each do |p| %>
-
     <%= link_to image_tag(p.photo_url, :title => p.name, :alt => p.name), product_path(p), method: :get %>
-
   <% end %>
-<!--  <%=  image_tag("/assets/images/products/#{@products.first.photo_url}", :title => @products.first.name) %>
-  <%= Product.all.first.photo_url %>-->
 </div>

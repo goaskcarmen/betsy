@@ -2,8 +2,7 @@
 
 <h1><%= @product.name %></h1>
 <p>Price: $<%= @product.unit_price %>
-<img src="<%= @product.photo_url %>", alt="<%= @product.name %>">
-<p>
+<%= image_tag(@product.photo_url, :title => @product.name, :alt => @product.name) %></p>
   <% if @product.quantity == 0 %>
     <%= "Out of Stock" %>
   <% else %>
