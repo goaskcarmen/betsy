@@ -26,8 +26,10 @@
 
 
 <!-- ONLY FOR MERCHANTS -->
-<%= button_to "Edit Item", edit_product_path(@product), method: :get %>
-<%= button_to "Delete Item", product_path(@product), method: :delete, data: { confirm: "Are you sure?" } %>
+<% if @merchant and @merchant.id ==product.user_id %>
+	<%= button_to "Edit Item", edit_product_path(@product), method: :get %>
+	<%= button_to "Delete Item", product_path(@product), method: :delete, data: { confirm: "Are you sure?" } %>
+<%end%>
 
 
 
