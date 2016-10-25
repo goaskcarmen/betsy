@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.product = find_product
     if @review.user_id == @product.user_id
-      flash[:notice] = " <U+1F575><U+1F3FB> We have our eyes on you.. you can't review your own product!"
+      flash[:notice] = "🕵🏻 We have our eyes on you.. you can't review your own product!"
       return redirect_to product_path(@product.id)
     end
     if @review.save
