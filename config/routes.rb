@@ -41,6 +41,13 @@ Rails.application.routes.draw do
 
   delete 'carts/:id/destroy' => 'carts#destroy', as: 'destroy_cart_item'
 
+  delete 'carts/empty' => 'carts#empty', as: 'empty_cart_items'
+
+  patch 'carts/:id/increase' => 'carts#increase', as: 'increase_quantity'
+
+  patch 'carts/:id/decrease' => 'carts#decrease', as: 'decrease_quantity'
+
+
 ################### CARTS ####################
 
 

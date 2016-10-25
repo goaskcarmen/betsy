@@ -14,14 +14,19 @@ class UsersController < ApplicationController
   def new
     #if they hit "regitster first", redirect to the github auth action in sessions
     auth_hash=session[:auth_hash]
-    if session[:auth_hash] == nil 
-      return redirect_to "/auth/github" 
+    if session[:auth_hash] == nil
+      return redirect_to "/auth/github"
     end
 
     #if they are already a current user, tell them so
     if User.find_by(uid: auth_hash['uid'], provider: 'github')
       flash[:notice]="You are already registered with github"
       return redirect_to :back
+    end
+
+
+    if session[:auth_hash] == nil
+      return redirect_to "/auth/github"
     end
 
     #if they have a github auth build potential user info from github auth
@@ -37,12 +42,12 @@ class UsersController < ApplicationController
     @user.email = params[:user][:email]
     @user.uid = params[:user][:uid]
     @user.provider = params[:user][:provider]
-    
+
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "successfully logged in!"
     end
-    return redirect_to index_path 
+    return redirect_to index_path
   end
 
   def edit
@@ -52,11 +57,11 @@ class UsersController < ApplicationController
     flash[:notice]= "details failed to save"
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
-    flash[:notice]= "information updated" if @user.save 
+    flash[:notice]= "information updated" if @user.save
   end
 
   def destroy
-        
+
   end
 
   def login
