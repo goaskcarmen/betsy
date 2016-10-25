@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+<p class = "flash-notice"><%= flash[:notice] %></p>
+
+<% end %>
+
 <h1><%= @product.name %></h1>
 <p>Price: $<%= @product.unit_price %>
 <img src="<%= @product.photo_url %>", alt="<%= @product.name %>">
@@ -10,12 +15,35 @@
 </p>
 <p><%= @product.description %></p>
 
+<%= button_to "Add item to cart", create_cart_product_path(@product), method: :post %>
+<%= button_to "View my cart", show_cart_product_path, method: :get %>
 <!-- Insert reviews here -->
+
+<%= render partial: "reviewsform" %>
+
+
+<!-- dispaly all product's reviews here using @reviews.each do  -->
+<% @reviews.each do |r| %>
+  <ul>
+    <li>
+      pears grade:
+      <% (r.rating).times do %>
+      <%= "🍐" %>
+      <% end %>
+    </li>
+    <li>
+      review contect:
+      <%= r.content %>
+    </li>
+  </ul>
+<% end %>
 
 
 <!-- ONLY FOR MERCHANTS -->
-<%= button_to "Edit Item", edit_product_path(@product), method: :get %>
-<%= button_to "Delete Item", product_path(@product), method: :delete, data: { confirm: "Are you sure?" } %>
+<% if @merchant and @merchant.id ==product.user_id %>
+	<%= button_to "Edit Item", edit_product_path(@product), method: :get %>
+	<%= button_to "Delete Item", product_path(@product), method: :delete, data: { confirm: "Are you sure?" } %>
+<%end%>
 
 
 

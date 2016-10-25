@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  
+
  ################### HOMEPAGES ####################
   root to: 'homepages#index', as: 'index'
 
@@ -31,13 +31,22 @@ Rails.application.routes.draw do
 
 ################### CARTS ####################
 
+  post 'carts/:id/create' => 'carts#create', as: 'create_cart_product'
+
   get 'carts/edit'
 
   get 'carts/update'
 
-  get 'carts/show'
+  get 'carts/show' => 'carts#show', as: 'show_cart_product'
 
-  get 'carts/destroy'
+  delete 'carts/:id/destroy' => 'carts#destroy', as: 'destroy_cart_item'
+
+  delete 'carts/empty' => 'carts#empty', as: 'empty_cart_items'
+
+  patch 'carts/:id/increase' => 'carts#increase', as: 'increase_quantity'
+
+  patch 'carts/:id/decrease' => 'carts#decrease', as: 'decrease_quantity'
+
 
 ################### CARTS ####################
 
@@ -60,7 +69,7 @@ Rails.application.routes.draw do
 
   get 'sessions/create'
 
-  get 'sessions/destroy'
+  delete 'sessions/destroy'
 
   get "/auth/:provider/callback" =>  "sessions#create"
 
@@ -69,7 +78,9 @@ Rails.application.routes.draw do
 
 
 ################### PRODUCTS ####################
-  resources :products, except: [:index]
+  resources :products, except: [:index] do
+    resources :reviews, only: [:new, :create, :edit, :update]
+  end
   # get 'products/new', to: "products#new", as: :new_product
 
   # post 'products', to: 'products#create', as: :products
