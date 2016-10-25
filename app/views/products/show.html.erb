@@ -23,6 +23,20 @@
 
 
 <!-- dispaly all product's reviews here using @reviews.each do  -->
+<% @reviews.each do |r| %>
+  <ul>
+    <li>
+      pears grade:
+      <% (r.rating).times do %>
+      <%= "🍐" %>
+      <% end %>
+    </li>
+    <li>
+      review contect:
+      <%= r.content %>
+    </li>
+  </ul>
+<% end %>
 
 
 <!-- ONLY FOR MERCHANTS -->

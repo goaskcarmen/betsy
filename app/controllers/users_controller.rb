@@ -3,11 +3,12 @@ class UsersController < ApplicationController
 
 
   def logged_in_index
-    if @user==nil
-      flash[:notice]="please log in to view your account page"
-      return redirect_to :back
-    end
-    raise
+
+   if @user == nil
+    flash[:notice] = "please log in to view your accout"
+    return redirect_to :back
+   end
+
    @reviews = @user.reviews
   end
 
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
       flash[:notice]="You are already registered with github"
       return redirect_to :back
     end
-
 
     if session[:auth_hash] == nil
       return redirect_to "/auth/github"
