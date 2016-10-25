@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get 'transactions/show'
 
-  get 'transactions/show_all' => 'transactions#show_all', as: 'show_all_transactions'
+  get 'transactions/show_all' 
 
 ################### TRANSACTIONS ####################
 

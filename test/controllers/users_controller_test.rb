@@ -8,15 +8,16 @@ class UsersControllerTest < ActionController::TestCase
 
     ### Action: NEW ###
     test "can see the new user registration page if they are a new user" do
+      User.find(users(:two).id).destroy #this is to make the user NOT in the database
       set_auth_hash
       get :new
-      assert_response :success
       assert_template 'users/new'
+      assert_response :success
     end
 
-     test "get redirected to the page they were on if they are a current user" do
+     test "get redirected back if they are a current user and logged in" do
+      set_auth_hash
       request.env["HTTP_REFERER"]="blah"
-      session[:user_id]=users(:current_user).id
       get :new
       assert_redirected_to "blah"
       assert_equal flash[:notice], "You are already registered with github"
@@ -29,6 +30,7 @@ class UsersControllerTest < ActionController::TestCase
 
     ### Action: CREATE ###
     test "can create/register a new user" do
+      set_auth_hash
       assert_difference('User.count', 1) do
         user_params = {user:{name: "Ada", email: "a@b.com", uid: "12345", provider: "github"}}
         post :create, user_params
@@ -64,6 +66,9 @@ class UsersControllerTest < ActionController::TestCase
       put :update, user_params
       assert_response :success
     end
+
+    ###LOGGED IN INDEX ###
+
   # test "should get logged_in_index" do
   #   get :logged_in_index
   #   assert_response :success
