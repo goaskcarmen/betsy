@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
    check_permissions("delete")
     @product.destroy
 
-    if @artist.destroy
+    if @product.destroy
       redirect_to index_path
     end
   end
