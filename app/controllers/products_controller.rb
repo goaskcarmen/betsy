@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to product_path(@product.id)
+      redirect_to index_path
     else
       render :new
     end
@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
 
   private
   def check_permissions(action)
-    if @merchant == nil 
+    if @merchant == nil
       flash[:notice]= "you must be logged in as a merchant to #{action} products"
       return redirect_to index_path
     end
@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :unit_price, :photo_url, :quantity)
+    params.require(:product).permit(:name, :description, :unit_price, :photo_url, :quantity).merge(user_id: session[:user_id])
   end
 
 end
