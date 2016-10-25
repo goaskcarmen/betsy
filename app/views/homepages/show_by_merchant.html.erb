@@ -1,2 +1,6 @@
-<h1>Homepages#show_by_merchant</h1>
-<p>Find me in app/views/homepages/show_by_merchant.html.erb</p>
+<h3>Products by <%= @merchant_products.first.user.name %></h3>
+<div class="index-photo">
+  <% @merchant_products.each do |prod| %>
+    <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
+  <% end %>
+</div>

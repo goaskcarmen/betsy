@@ -1,2 +1,7 @@
-<h1>Homepages#show_by_category</h1>
-<p>Find me in app/views/homepages/show_by_category.html.erb</p>
+<h3>Product Category:  <%= @cat.name %></h3>
+
+<div class="index-photo">
+  <% @cat_products.each do |prod| %>
+    <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
+  <% end %>
+</div>

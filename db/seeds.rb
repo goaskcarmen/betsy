@@ -9,7 +9,7 @@
 require 'csv'
 
 CSV.foreach('seed_csvs/products.csv', :headers => true ) do |prod_obj|
-  Product.create(id: prod_obj["product_id"], name: prod_obj["name"], unit_price: prod_obj["unit_price"], quantity: prod_obj["quantity"], description: prod_obj["description"], photo_url: prod_obj["photo_url"])
+  Product.create(id: prod_obj["product_id"], name: prod_obj["name"], unit_price: prod_obj["unit_price"], quantity: prod_obj["quantity"], description: prod_obj["description"], photo_url: prod_obj["photo_url"], user_id: prod_obj["user_id"])
 end
 
 CSV.foreach('seed_csvs/users.csv', :headers => true ) do |user_obj|
