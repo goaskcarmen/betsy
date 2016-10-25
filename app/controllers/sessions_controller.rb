@@ -21,7 +21,6 @@ class SessionsController < ApplicationController
     end
     # Save the user ID in the session
     session[:user_id] = @user.id
-
     flash[:notice] = "successfully logged in!"
 
     redirect_to index_path

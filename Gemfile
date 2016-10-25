@@ -53,6 +53,7 @@ group :development, :test do
   ######## ADDED GEMS ########
   gem 'dotenv-rails'
   gem 'better_errors'
+  gem 'simplecov'
   ######## ADDED GEMS ########
 end
 

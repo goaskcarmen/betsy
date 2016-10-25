@@ -35,14 +35,14 @@ class SessionsControllerTest < ActionController::TestCase
       # assert_redirected_to index_path
 
 
-  # test "If a user logs in twice it doesn't create a 2nd user" do
-  #   assert_difference('User.count', 1) do
-  #     login_a_user
-  #   end
-  #   assert_no_difference('User.count') do
-  #     login_a_user
-  #     assert_response :redirect
-  #     assert_redirected_to index_path
-  #   end
-  # end
+  test "If a user logs in twice it doesn't create a 2nd user" do
+    # assert_difference('User.count', 1) do
+    #   login_a_user
+    # end
+    assert_no_difference('User.count') do
+      log_in_a_user
+      assert_response :redirect
+      assert_redirected_to index_path
+    end
+  end
 end
