@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def logged_in_index
 
    if @user == nil
-    flash[:notice] = "please log in to view your accout"
+    flash[:notice] = "please log in to view your account"
     return redirect_to :back
    end
 
@@ -18,15 +18,12 @@ class UsersController < ApplicationController
     if session[:auth_hash] == nil
       return redirect_to "/auth/github"
     end
-
+    #User.all.each{|u|puts u.name}
+    #puts User.find_by(uid: auth_hash['uid'], provider: 'github').inspect
     #if they are already a current user, tell them so
     if User.find_by(uid: auth_hash['uid'], provider: 'github')
       flash[:notice]="You are already registered with github"
       return redirect_to :back
-    end
-
-    if session[:auth_hash] == nil
-      return redirect_to "/auth/github"
     end
 
     #if they have a github auth build potential user info from github auth
