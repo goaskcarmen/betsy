@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get 'transactions/show'
 
+  get 'transactions/show_all' 
+
 ################### TRANSACTIONS ####################
 
 

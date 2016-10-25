@@ -7,7 +7,8 @@ current_user:
   name: Blah Person
 
 two:
-  email: MyString
-  uid: 1
-  provider: MyString
-  name: MyString
+  email: "a@b.com"
+  uid: '123545'
+  provider: 'github'
+  name: "Ada"
+
