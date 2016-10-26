@@ -32,14 +32,16 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "The user can log out if they are logged in" do
     log_in_a_user
+    assert_not_nil session[:user_id]
     get :destroy
-    assert_equal session[:user_id], nil
+    assert_nil session[:user_id]
     assert_redirected_to index_path
   end
 
   test "Trying to log out when you are logged out already doesn't do anything" do
+    assert_nil session[:user_id]
     get :destroy
-    assert_equal session[:user_id], nil
+    assert_nil session[:user_id]
     assert_redirected_to index_path
   end
 end
