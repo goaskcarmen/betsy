@@ -13,19 +13,33 @@
 <!-- ########### Products ################### -->
 <div>
   <h4>Show by Merchant</h4>
-  <%= form_tag show_by_merchant_path, method: :get do %>
-  <%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'name') %>
-  <%= submit_tag "Select" %>
+  <% @users.each do |user| %>
+    <%= link_to user.name, show_by_merchant_path(user[:id]) %>
   <% end %>
 </div>
 
 <div>
   <h4>Show by Category</h4>
-  <%= form_tag show_by_category_path, method: :get do %>
-  <%= select_tag "category_id", options_from_collection_for_select(@categories, 'id', 'name') %>
-  <%= submit_tag "Select" %>
+  <% @categories.each do |category| %>
+    <%= link_to category.name, show_by_category_path(category[:id]) %>
   <% end %>
 </div>
+
+<!-- <div>
+  <h4>Show by Merchant</h4>
+  <%#= form_tag show_by_merchant_path, method: :get do %>
+  <%#= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'name') %>
+  <%#= submit_tag "Select" %>
+  <%# end %>
+</div> -->
+
+<!-- <div>
+  <h4>Show by Category</h4>
+  <%#= form_tag show_by_category_path, method: :get do %>
+  <%#= select_tag "category_id", options_from_collection_for_select(@categories, 'id', 'name') %>
+  <%#= submit_tag "Select" %>
+  <%# end %>
+</div> -->
 
 <div class="index-photo">
   <% @products.each do |p| %>
