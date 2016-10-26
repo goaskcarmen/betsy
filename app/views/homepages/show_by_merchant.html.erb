@@ -1,8 +1,8 @@
-<!-- <h3>Products by <%= @merchant_products.first.user.name %></h3>
+<!-- <h3>Products by <%#= @merchant_products.first.user.name %></h3>
 <div class="index-photo">
-  <% @merchant_products.each do |prod| %>
-    <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
-  <% end %>
+  <%# @merchant_products.each do |prod| %>
+    <%#= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
+  <%# end %>
 </div> -->
 
 
@@ -13,7 +13,7 @@
       <!-- merchant logo: -->
       <%= image_tag "logo2.jpg" %>
       <div class="hide-for-small panel">
-        <h3><%= @merchant.name %></h3>
+        <h3><%= @user.name %></h3>
         <h5 class="subheader">blah blah blah stuff about the category</h5>
       </div>
       <a href="#"><div class="panel callout radius"><h6>something somthing...</h6></div></a>
@@ -29,8 +29,8 @@
         <div class="large-4 small-6 columns">
           <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
           <div class="panel">
-            <h5>product Name</h5>
-            <h6 class="subheader">$000.00</h6>
+            <h5><%=prod.name%></h5>
+            <h6 class="subheader"><%=number_to_currency(prod.unit_price)%></h6>
           </div>
         </div>
       <% end %>

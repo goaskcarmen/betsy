@@ -30,6 +30,14 @@
             <% else %>
               <li class="name"><h1><%= link_to "Welcome! Please log in!", index_path %></h1></li>
             <% end %>
+            <% @categories.each do |category| %>
+              <li>
+                <%= link_to category.name, show_by_category_path(category[:id]) %>
+              </li>
+            <% end %>
+            <% @users.each do |user| %>
+              <li><%= link_to user.name, show_by_merchant_path(user[:id]) %></li>
+            <% end %>
             </ul>
             <section class="top-bar-section">
               <ul class="right">

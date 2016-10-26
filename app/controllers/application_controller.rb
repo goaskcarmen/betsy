@@ -10,5 +10,6 @@ class ApplicationController < ActionController::Base
     @user= User.find_by(id: session[:user_id])
     @users = User.all #these are all merchants
     @categories = Category.all
+    @products = Product.all
   end
 end
