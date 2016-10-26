@@ -6,18 +6,11 @@ class SessionsControllerTest < ActionController::TestCase
     get :create,  {provider: "github"}
   end
 
-  # test "should get destroy" do
-  #   get :destroy
-  #   assert_response :success
-  # end
-
   test "If a user has not registered and tries to log in, they are sent to register page" do
     users(:two).destroy #takes Ada out of database
     log_in_a_user #tries to log in Ada from fixtures
     assert_redirected_to users_new_path
    end
-
-
 
   test "Can log in a user who is already registered" do
     #logs in Ada (which matches a fixture)
@@ -35,5 +28,18 @@ class SessionsControllerTest < ActionController::TestCase
       assert_response :redirect
       assert_redirected_to index_path
     end
+  end
+
+  test "The user can log out if they are logged in" do
+    log_in_a_user
+    get :destroy
+    assert_equal session[:user_id], nil
+    assert_redirected_to index_path
+  end
+
+  test "Trying to log out when you are logged out already doesn't do anything" do
+    get :destroy
+    assert_equal session[:user_id], nil
+    assert_redirected_to index_path
   end
 end
