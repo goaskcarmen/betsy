@@ -8,7 +8,7 @@ class UsersControllerTest < ActionController::TestCase
 
     ### Action: NEW ###
     test "can see the new user registration page if they are a new user" do
-      User.find(users(:two).id).destroy #this is to make the user NOT in the database
+      users(:two).destroy #this is to make the user NOT in the database
       set_auth_hash
       get :new
       assert_template 'users/new'
