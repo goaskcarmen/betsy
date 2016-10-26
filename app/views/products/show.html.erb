@@ -5,6 +5,7 @@
     <!-- product picture: -->
     <%= image_tag(@product.photo_url, :title => @product.name, :alt => @product.name) %>
     <div class="hide-for-small panel">
+      <!-- this should not be merchant.name -> it should be @merchant = find...(@product.user_id) -->
       <h3> sold by: <%= @merchant.name %></h3>
       <h5 class="subheader">blah blah blah stuff about the category</h5>
     </div>

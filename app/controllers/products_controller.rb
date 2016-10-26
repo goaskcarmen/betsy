@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
   end
 
   def find_merchant
-    @merchant=User.find_by(id: session[:user_id])
+    @merchant = User.find_by(id: session[:user_id])
   end
 
   def find_product
