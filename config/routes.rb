@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get 'transactions/show'
 
-  get 'transactions/show_all' 
+  get 'transactions/show_all'
 
 ################### TRANSACTIONS ####################
 
@@ -71,7 +71,7 @@ Rails.application.routes.draw do
 
   get 'sessions/create'
 
-  delete 'sessions/destroy'
+  get 'sessions/destroy'
 
   get "/auth/:provider/callback" =>  "sessions#create"
 

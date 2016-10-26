@@ -21,20 +21,56 @@
         <div class="large-12 columns">
           <nav class="top-bar" data-topbar>
             <ul class="title-area">
+<!-- link to homepage top left of top bar -->
               <li class="name"><h1><%= link_to "Besty", index_path %></h1></li>
-              <!-- <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li> -->
+            </ul>
+            <ul class="title-area">
+            <% if @user %>
+              <li class="name"><h1><%= link_to "Welcome #{@user.name}!", index_path %></h1></li>
+            <% else %>
+              <li class="name"><h1><%= link_to "Welcome! Please log in!", index_path %></h1></li>
+            <% end %>
             </ul>
             <section class="top-bar-section">
               <ul class="right">
                 <li class="divider"></li>
+                <li class="has-dropdown">
+                  <a href="#">products by category</a>
+                  <ul class="dropdown">
+                    <li><label>categories</label></li>
+                    <li class="has-dropdown">
+                      <ul class="dropdown">
+                        <!-- link to category show using loop @cat.each do |c| -->
+                        <li><a href="#">category name(drop menu item)</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="divider"></li>
+                <li class="has-dropdown">
+                  <a href="#">products by merchant</a>
+                  <ul class="dropdown">
+                    <li><label>merchants</label></li>
+                    <li class="has-dropdown">
+                      <ul class="dropdown">
+                        <!-- link to merchant show using loop @merchant.each do |c| -->
+                        <li><a href="#">merchant name(drop menu item)</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+<!-- link to links to "log in/register via github" top right of top bar  -->
             <% if session[:user_id] == nil %>
-                <li class="has-dropdown"><%= link_to "log in via github", "/auth/github" %></li>
+                <li><%= link_to "log in via github", "/auth/github" %></li>
                 <li class="divider"></li>
-                <li>        <%= link_to "register via github", "/users/new" %></li>
+                <li><%= link_to "register via github", "/users/new" %></li>
                 <li class="divider"></li>
+ <!-- link to links to "log out / my account top right of top bar  -->
             <% else %>
-                <li class="has-dropdown"><%= link_to "Logout", sessions_destroy_path,:method => :delete %></li>
-                <li class="has-dropdown"><%= link_to "My Account", "/users/logged_in_index" %></li>
+                <li><%= link_to "Logout", sessions_destroy_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "My Account", "/users/logged_in_index" %></li>
+                <li class="divider"></li>
               </ul>
             <% end %>
             </section>
