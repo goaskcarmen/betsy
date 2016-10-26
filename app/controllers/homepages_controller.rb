@@ -21,11 +21,19 @@ class HomepagesController < ApplicationController
   end
 
   def show_by_merchant
-    @merchant_products = @products.where(user_id: params[:id])
+# <<<<<<< HEAD
+#     @merchant_products = @products.where(user_id: params[:id])
 
-    if @merchant_products == nil
-      redirect_to index_path
-    end
+#     if @merchant_products == nil
+#       redirect_to index_path
+#     end
+# =======
+    @merchant_products = @products.where(user_id: params[:id])
+    @user= User.find_by(id: session[:user_id])
+    
+    #if merchant_products is nil then they didn't get to this page through the form,
+    # that means they got here through merchant account page, so show this merchant's products
+    @merchant_products = @user.products if @merchant_products.empty?
   end
 
   private
