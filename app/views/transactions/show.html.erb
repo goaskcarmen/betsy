@@ -1,2 +1,8 @@
-<h1>Transactions#show</h1>
-<p>Find me in app/views/transactions/show.html.erb</p>
+
+<p>Status: <%= @transaction.status %></p>
+<p>Client Name: <%= @transaction.client_name %></p>
+<p>Email: <%= @transaction.client_email %></p>
+<p>Address: <%= @transaction.client_address %></p>
+<p>Last four digits of credit card: ...<%= @transaction.client_cc_num %></p>
+<p>Credit card expiration: <%= @transaction.client_cc_exp %></p>
+<p>total_price: <%= @transaction.total_price %></p>

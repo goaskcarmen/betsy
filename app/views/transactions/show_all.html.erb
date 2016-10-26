@@ -1,6 +1,12 @@
-<% @mytransactions.each do |i| %>
+<table>
 <tr>
-<%= i.product_name %>
-<%= i.merchant_name %>
+    <th>Transaction ID</th>
+    <th>Product</th>
+</tr>
+<% @mytransaction_products.each do |i| %>
+<tr>
+  <td><%=link_to( i.order_id, transactions_show_path(i.order_id)) %></td>
+  <td><%= i.product_name %></td>
 </tr>
 <% end %>
+</table>

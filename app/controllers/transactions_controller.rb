@@ -38,7 +38,7 @@ class TransactionsController < ApplicationController
         @tp.merchant_name = m.name
         @tp.product_id = p.id
         @tp.order_id = @transaction.id
-        @tp.merchant_id = session[:user_id]
+        @tp.merchant_id = m.id
         @tp.save
         p.quantity -= q
         p.save
@@ -48,10 +48,12 @@ class TransactionsController < ApplicationController
   end
 
   def show
+    @transaction = Transaction.find(params[:id])
+    @mytransaction = TransactionProduct.where(order_id: @transaction.id)
   end
 
   def show_all
-    @mytransactions = TransactionProduct.where(merchant_id: session[:user_id])
+    @mytransaction_products = TransactionProduct.where(merchant_id: session[:user_id])
   end
 
   private
