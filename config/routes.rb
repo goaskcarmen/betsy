@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   post 'transactions/create' => 'transactions#create', as: 'create_transaction'
 
-  get 'transactions/show'
+  get 'transactions/:id/show' => 'transactions#show', as: 'transactions_show'
 
   get 'transactions/show_all'
 

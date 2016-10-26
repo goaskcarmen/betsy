@@ -26,18 +26,19 @@ class TransactionsController < ApplicationController
       @cart.each do |i|
         q = i.product_quantity
         p = Product.find(i.product_id)
-        # m = User.find(p.user_id)
+        m = User.find(p.user_id)
         @tp = TransactionProduct.new
         @tp.product_name = p.name
         @tp.product_unit_price = p.unit_price
         @tp.product_description = p.description
         @tp.product_quantity = q
         @tp.product_total_price = q*p.unit_price
-        # @tp.merchant_email = m.email
+        @tp.merchant_email = m.email
         @tp.mark_shipped = false
-        # @tp.merchant_name = m.name
+        @tp.merchant_name = m.name
         @tp.product_id = p.id
         @tp.order_id = @transaction.id
+        @tp.merchant_id = m.id
         @tp.save
         p.quantity -= q
         p.save
@@ -47,9 +48,12 @@ class TransactionsController < ApplicationController
   end
 
   def show
+    @transaction = Transaction.find(params[:id])
+    @mytransaction = TransactionProduct.where(order_id: @transaction.id)
   end
 
   def show_all
+    @mytps = TransactionProduct.where(merchant_id: session[:user_id])
   end
 
   private
