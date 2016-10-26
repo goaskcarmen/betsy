@@ -53,7 +53,7 @@ class TransactionsController < ApplicationController
   end
 
   def show_all
-    @mytransaction_products = TransactionProduct.where(merchant_id: session[:user_id])
+    @mytps = TransactionProduct.where(merchant_id: session[:user_id])
   end
 
   private

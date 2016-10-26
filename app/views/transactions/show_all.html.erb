@@ -1,12 +1,18 @@
 <table>
 <tr>
-    <th>Transaction ID</th>
-    <th>Product</th>
+    <th>Order ID</th>
+    <th>Customer Information for Order</th>
+    <th>Shipment Status</th>
 </tr>
-<% @mytransaction_products.each do |i| %>
-<tr>
-  <td><%=link_to( i.order_id, transactions_show_path(i.order_id)) %></td>
-  <td><%= i.product_name %></td>
-</tr>
+<% @mytps.length.times do |i| %>
+  <% if @mytps[i].order_id == @mytps[i-1].order_id %>
+    <% next %>
+  <% else %>
+  <tr>
+    <td> <%= @mytps[i].order_id %></td>
+    <td><%=link_to( 'Link to customer Information', transactions_show_path(@mytps[i].order_id)) %></td>
+    <td>fancy stuff</td>
+  </tr>
+  <% end %>
 <% end %>
 </table>
