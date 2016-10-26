@@ -41,7 +41,17 @@
                     <li class="has-dropdown">
                       <ul class="dropdown">
                         <!-- link to category show using loop @cat.each do |c| -->
-                        <li><a href="#">category name(drop menu item)</a></li>
+<!-- <div> -->
+  <!-- <h4>Show by Category</h4> -->
+  <!-- <% @categories.each do |category| %> -->
+    <!-- <%= link_to category.name, show_by_category_path(category[:id]) %>
+  <% end %> -->
+<!-- </div>                 -->
+                      <% @categories.each do |category| %>
+                        <li>
+                          <%= link_to category.name, show_by_category_path(category[:id]) %>
+                        </li>
+                      <% end %>
                       </ul>
                     </li>
                   </ul>
@@ -54,7 +64,15 @@
                     <li class="has-dropdown">
                       <ul class="dropdown">
                         <!-- link to merchant show using loop @merchant.each do |c| -->
-                        <li><a href="#">merchant name(drop menu item)</a></li>
+<!-- <div>
+  <h4>Show by Merchant</h4>
+  <% @users.each do |user| %>
+    <%= link_to user.name, show_by_merchant_path(user[:id]) %>
+  <% end %>
+</div> -->
+                      <% @users.each do |user| %>
+                        <li><%= link_to user.name, show_by_merchant_path(user[:id]) %></li>
+                      <% end %>
                       </ul>
                     </li>
                   </ul>

@@ -15,7 +15,7 @@
 
 <!-- <h1><%= @product.name %></h1> -->
   <div class="large-8 columns">
-    <p> Price: $<%= @product.unit_price %></p>
+    <p> Price: <%= number_to_currency(@product.unit_price) %></p>
     <p><% if @product.quantity == 0 %>
        <%= "Out of Stock" %>
        <% else %>
