@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
-  validates :email, :uid, :provider, presence: true
+  validates :name,:email, :uid, :provider, presence: true
 
-  has_many :transactions
+  has_many :transactions #this may need to be changed
   has_many :reviews
   has_many :products
 
