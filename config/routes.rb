@@ -7,13 +7,13 @@ Rails.application.routes.draw do
 
   get 'homepages/index'
 
-  get 'homepages/show_by_category', as: 'show_by_category'
+  get 'homepages/:id/show_by_category' => 'homepages#show_by_category', as: 'show_by_category'
 
   get 'homepages/show_all_products'
 
   get 'homepages/login'
 
-  get 'homepages/show_by_merchant', as: 'show_by_merchant'
+  get 'homepages/:id/show_by_merchant' => 'homepages#show_by_merchant', as: 'show_by_merchant'
 ################### HOMEPAGES ####################
 
 
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   get 'transactions/show'
 
-  get 'transactions/show_all' 
+  get 'transactions/show_all'
 
 ################### TRANSACTIONS ####################
 

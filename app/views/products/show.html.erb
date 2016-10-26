@@ -1,7 +1,7 @@
 
 
 <h1><%= @product.name %></h1>
-<p>Price: $<%= @product.unit_price %>
+<p>Price: <%= number_to_currency(@product.unit_price) %>
 <%= image_tag(@product.photo_url, :title => @product.name, :alt => @product.name) %></p>
   <% if @product.quantity == 0 %>
     <%= "Out of Stock" %>

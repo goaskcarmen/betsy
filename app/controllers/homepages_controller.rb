@@ -9,15 +9,23 @@ class HomepagesController < ApplicationController
   end
 
   def show_by_category
-      @cat_products = Category.find(params["category_id"]).products
-      @cat = Category.find(params["category_id"])
+    @cat_products = Category.find(params[:id].to_i).products
+    @cat = Category.find(params[:id].to_i)
+
+    if @cat_products == nil
+      redirect_to index_path
+    end
   end
 
   def show_all_products
   end
 
   def show_by_merchant
-    @merchant_products = @products.where(user_id: params[:user_id])
+    @merchant_products = @products.where(user_id: params[:id])
+
+    if @merchant_products == nil
+      redirect_to index_path
+    end
   end
 
   private
