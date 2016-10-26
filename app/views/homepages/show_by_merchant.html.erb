@@ -1,6 +1,56 @@
-<h3>Products by <%= @merchant_products.first.user.name %></h3>
+<!-- <h3>Products by <%#= @merchant_products.first.user.name %></h3>
 <div class="index-photo">
-  <% @merchant_products.each do |prod| %>
-    <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
-  <% end %>
+  <%# @merchant_products.each do |prod| %>
+    <%#= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
+  <%# end %>
+</div> -->
+
+
+
+<!-- ########## category left side ##### -->
+  <div class="row">
+    <div class="large-12 columns">
+      <!-- merchant logo: -->
+      <%= image_tag "logo2.jpg" %>
+      <div class="hide-for-small panel">
+        <h3><%= @user.name %></h3>
+        <h5 class="subheader">blah blah blah stuff about the category</h5>
+      </div>
+      <a href="#"><div class="panel callout radius"><h6>something somthing...</h6></div></a>
+    </div>
+  </div>
+
+<!-- #### merchant_products  -->
+
+<div class="row">
+  <div class="large-12 columns">
+    <div class="row">
+      <% @merchant_products.each do |prod| %>
+        <div class="large-4 small-6 columns">
+          <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
+          <div class="panel">
+            <h5><%=prod.name%></h5>
+            <h6 class="subheader"><%=number_to_currency(prod.unit_price)%></h6>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel">
+          <div class="row">
+            <div class="large-2 small-6 columns">
+              <img src="http://placehold.it/300x300&amp;text=Site%20Owner">
+            </div>
+            <div class="large-10 small-6 columns">
+              <strong>This Site Is Managed By</strong>
+              <hr> Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
