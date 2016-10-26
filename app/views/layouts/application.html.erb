@@ -33,7 +33,7 @@
                 <li>        <%= link_to "register via github", "/users/new" %></li>
                 <li class="divider"></li>
             <% else %>
-                <li class="has-dropdown"><%= link_to "Logout", sessions_destroy_path,:method => :delete %></li>
+                <li class="has-dropdown"><%= link_to "Logout", sessions_destroy_path %></li>
                 <li class="has-dropdown"><%= link_to "My Account", "/users/logged_in_index" %></li>
               </ul>
             <% end %>

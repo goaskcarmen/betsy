@@ -8,7 +8,7 @@ class UsersControllerTest < ActionController::TestCase
 
     ### Action: NEW ###
     test "can see the new user registration page if they are a new user" do
-      User.find(users(:two).id).destroy #this is to make the user NOT in the database
+      users(:two).destroy #this is to make the user NOT in the database
       set_auth_hash
       get :new
       assert_template 'users/new'
@@ -69,11 +69,19 @@ class UsersControllerTest < ActionController::TestCase
 
     ###LOGGED IN INDEX ###
 
-  # test "should get logged_in_index" do
-  #   get :logged_in_index
-  #   assert_response :success
-  # end
+  test "a user that is not logged in can't see the my account page" do
+    request.env["HTTP_REFERER"]="blah"
+    get :logged_in_index
+    assert_redirected_to "blah"
+    assert_equal flash[:notice], "please log in to view your account"
+  end
 
+  test "a logged user can see the my account page" do
+    @user=users(:current_user)
+    session[:user_id]= @user.id
+    get :logged_in_index
+    assert_response :success
+  end
   # test "should get new" do
   #   get :new
   #   assert_response :success
