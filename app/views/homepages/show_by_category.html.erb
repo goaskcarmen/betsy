@@ -17,16 +17,18 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <div class="row">
+    <div class="panel">
+      <div class="row">
+        <div class="small-block-grid-5">
       <% @cat_products.each do |prod| %>
-        <div class="large-4 small-6 columns">
-          <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
-          <div class="panel">
-            <h5>Item Name</h5>
-            <h6 class="subheader">$000.00</h6>
-          </div>
-        </div>
+          <li>
+            <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
+            <h5 class="subheader"><%=prod.name%></h5>
+            <h6 class="subheader">$<%= prod.unit_price%></h6>
+          </li>
       <% end %>
+        </div>
+      </div>
     </div>
 
 
