@@ -10,8 +10,7 @@ class HomepagesController < ApplicationController
   def show_by_category
     @cat_products = Category.find(params[:id].to_i).products
     @cat = Category.find(params[:id].to_i)
-
-    if @cat_products == nil
+    if @cat_products.empty?
       redirect_to index_path
     end
   end
@@ -26,8 +25,9 @@ class HomepagesController < ApplicationController
       @most_pop="The most popular product is: #{@merchant_products.sample.name}"
       @products_intro="Here are #{@user_for_products.name}'s products "
     end
-
-    if @user_for_products==@user 
+    puts "user for products: #{@user_for_products}"
+    puts "user: #{@user.inspect}"
+    if @user_for_products==@user
       @is_my_page=true 
     else
       @is_my_page=false

@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+couple_cases:
+  name: Couple Cell phone case
   unit_price: 1
-  description: MyText
-  photo_url: MyString
-  quantity: 1
+  description: cute cases that come in twos
+  photo_url: 
+  quantity: 10
+  categories: electronics
+  user: :current_user
 
 two:
   name: MyString
