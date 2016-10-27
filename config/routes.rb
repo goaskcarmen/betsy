@@ -27,6 +27,10 @@ Rails.application.routes.draw do
 
   get 'transactions/show_all'
 
+  post 'transactions/:id/mark_shipped' => 'transactions#mark_shipped'
+
+  post 'transactions/:id/mark_not_shipped' => 'transactions#mark_not_shipped'
+
 ################### TRANSACTIONS ####################
 
 
@@ -71,7 +75,7 @@ Rails.application.routes.draw do
 
   get 'sessions/create'
 
-  get 'sessions/destroy'
+  delete 'sessions/destroy'
 
   get "/auth/:provider/callback" =>  "sessions#create"
 
