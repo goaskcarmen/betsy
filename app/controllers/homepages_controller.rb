@@ -16,9 +16,6 @@ class HomepagesController < ApplicationController
     end
   end
 
-  def show_all_products
-  end
-
   def show_by_merchant
     @merchant_products = @products.where(user_id: params[:id])
     @user_for_products=User.find(params[:id])
