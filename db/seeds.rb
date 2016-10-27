@@ -26,7 +26,7 @@ CSV.foreach('seed_csvs/categories_products.csv', :headers => true ) do |cat_prod
 end
 
 
-SELECT setval('product_id_seq', (SELECT max(id) FROM product));
-SELECT setval('user_id_seq', (SELECT max(id) FROM user));
-SELECT setval('category_id_seq', (SELECT max(id) FROM category));
-SELECT setval('categories_product_id_seq', (SELECT max(id) FROM categories_product));
+SELECT setval('products_id_seq', (SELECT max(id) FROM products));
+SELECT setval('users_id_seq', (SELECT max(id) FROM users));
+SELECT setval('categories_id_seq', (SELECT max(id) FROM categories));
+SELECT setval('categories_products_id_seq', (SELECT max(id) FROM categories_products));
