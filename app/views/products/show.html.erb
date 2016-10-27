@@ -5,7 +5,7 @@
     <!-- product picture: -->
     <%= image_tag(@product.photo_url, :title => @product.name, :alt => @product.name) %>
     <div class="hide-for-small panel">
-      <h3> sold by: <%= @merchant.name %></h3>
+      <h3> sold by: <%= @product.user.name %></h3>
       <h5 class="subheader">blah blah blah stuff about the category</h5>
     </div>
     <a href="#"><div class="panel callout radius"><h6>something somthing...</h6></div></a>
