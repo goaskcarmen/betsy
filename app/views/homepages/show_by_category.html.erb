@@ -23,7 +23,7 @@
           <%= link_to image_tag(prod.photo_url, :title => prod.name, :alt => prod.name), product_path(prod), method: :get %>
           <div class="panel">
             <h5>Item Name</h5>
-            <h6 class="subheader">$000.00</h6>
+            <h6 class="subheader"><%= number_to_currency(prod.unit_price)%></h6>
           </div>
         </div>
       <% end %>

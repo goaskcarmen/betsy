@@ -34,7 +34,7 @@
         <%= link_to image_tag(p.photo_url, :title => p.name, :alt => p.name), product_path(p), method: :get %>
         <div class="panel">
           <h5>Item Name</h5>
-          <h6 class="subheader">$<%= p.unit_price%></h6>
+          <h6 class="subheader"><%= number_to_currency(p.unit_price)%></h6>
         </div>
       </div>
     <% end %>
