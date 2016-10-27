@@ -12,6 +12,7 @@ CSV.foreach('seed_csvs/products.csv', :headers => true ) do |prod_obj|
   Product.create(id: prod_obj["product_id"], name: prod_obj["name"], unit_price: prod_obj["unit_price"], quantity: prod_obj["quantity"], description: prod_obj["description"], photo_url: prod_obj["photo_url"], user_id: prod_obj["user_id"])
 end
 
+
 CSV.foreach('seed_csvs/users.csv', :headers => true ) do |user_obj|
   User.create(id: user_obj["user_id"], name: user_obj["name"], email: user_obj["email"], provider: user_obj["provider"], uid: user_obj["uid"])
 end
@@ -23,3 +24,9 @@ end
 CSV.foreach('seed_csvs/categories_products.csv', :headers => true ) do |cat_prod|
   Product.find(cat_prod["product_id"]).categories << Category.find(cat_prod["category_id"])
 end
+
+
+SELECT setval('product_id_seq', (SELECT max(id) FROM product));
+SELECT setval('user_id_seq', (SELECT max(id) FROM user));
+SELECT setval('category_id_seq', (SELECT max(id) FROM category));
+SELECT setval('categories_product_id_seq', (SELECT max(id) FROM categories_product));
