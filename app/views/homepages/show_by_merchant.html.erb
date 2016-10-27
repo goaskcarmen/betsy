@@ -11,13 +11,17 @@
   <div class="row">
     <div class="large-12 columns">
       <!-- merchant logo: -->
-      <%= image_tag "logo2.jpg" %>
+      <%= image_tag "besty_merchant_logo.png" %>
       <div class="hide-for-small panel">
-        <h3><%= @user.name %></h3>
-        <h5 class="subheader">blah blah blah stuff about the category</h5>
+        <h3><%= @user_for_products.name %></h3>
+        <h5 class="subheader"><%= @products_intro%></h5>
       </div>
-      <a href="#"><div class="panel callout radius"><h6>something somthing...</h6></div></a>
+     <!-- <a href="#">--><div class="panel callout radius"><h6>
+        <%= @most_pop %><% if @is_my_page %>. <%= link_to "Add a product", "/products/new"%>
+        <% end %>
+      </h6></div><!--</a>-->
     </div>
+    
   </div>
 
 <!-- #### merchant_products  -->
@@ -55,4 +59,6 @@
       </div>
     </div>
   </div>
+  Business graphic by <a href="http://www.flaticon.com/authors/freepik">Freepik</a> from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>
 </div>
+
