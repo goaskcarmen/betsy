@@ -10,9 +10,9 @@
   <link href='http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  <!-- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <!-- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %> -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %> -->
+  <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="row">
@@ -67,7 +67,7 @@
                 <li><%= link_to "My Account", "/users/logged_in_index" %></li>
                 <li class="divider"></li>
 <!-- need to figure out the link to the show cart -->
-                <li><%= link_to "Cart", "/carts/:id/show" %></li>
+                <li><%= link_to "Cart", show_cart_product_path %></li>
                 <li class="divider"></li>
               </ul>
             <% end %>
