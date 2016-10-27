@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
       @transaction.client_cc_num = params[:transaction][:client_cc_num].slice(-4..-1)
       @transaction.client_cc_exp = params[:transaction][:client_cc_exp]
       @transaction.status = "paid"
-      @transaction.total_price = nil
+      @transaction.total_price = 0
       @transaction.save
 
       @cart = CartProduct.where(cart_id: session[:cart_id])
@@ -40,10 +40,13 @@ class TransactionsController < ApplicationController
         @tp.order_id = @transaction.id
         @tp.merchant_id = m.id
         @tp.save
+        @transaction.total_price += @tp.product_total_price
+        @transaction.save
         p.quantity -= q
         p.save
         i.destroy
       end
+
 
   end
 
@@ -54,6 +57,28 @@ class TransactionsController < ApplicationController
 
   def show_all
     @mytps = TransactionProduct.where(merchant_id: session[:user_id])
+
+    
+  end
+
+  def mark_shipped
+    @transaction_product = TransactionProduct.find(params[:id].to_i)
+    # @transaction = Transaction.find(@transaction_product.order_id)
+    @transaction_product.mark_shipped = true
+    @transaction_product.save
+    # @transaction.status = "complete"
+
+    redirect_to(:back)
+  end
+
+  def mark_not_shipped
+    @transaction_product = TransactionProduct.find(params[:id].to_i)
+    # @transaction = Transaction.find(@transaction_product.order_id)
+    @transaction_product.mark_shipped = false
+    @transaction_product.save
+    # @transaction.status = "incomplete"
+
+    redirect_to(:back)
   end
 
   private
