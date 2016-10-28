@@ -9,9 +9,10 @@ couple_cases:
   categories: electronics
   user: :current_user
 
-two:
-  name: MyString
+rando:
+  name: Rando Thing
   unit_price: 1
-  description: MyText
+  description: this is a random thing
   photo_url: MyString
-  quantity: 1
+  categories: miscellaneous
+  user: :rando_guy

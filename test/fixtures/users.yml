@@ -12,3 +12,9 @@ two:
   provider: 'github'
   name: "Ada"
 
+rando_guy:
+  email: rando@ran.com
+  uid: "21231"
+  provider: github
+  name: Rando Guy
+

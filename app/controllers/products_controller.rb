@@ -29,7 +29,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    check_permissions
     @product.update(product_params)
     if @product.update(product_params)
      redirect_to product_path
@@ -50,17 +49,17 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id].to_i)
   end
 
-  def get_out
-     flash[:notice]= "you must be logged in as a merchant to do that"
+  def get_out(message)
+     flash[:notice]= message
       return redirect_to :back
   end
 
   def ensure_a_merchant
-    get_out unless @user
+    get_out("you must be logged in as a merchant to do that") unless @user
   end
 
   def ensure_this_merchant
-    get_out unless @user == @product.user
+    get_out("You cannot edit a product that doesn't belong to you") unless @user == @product.user
   end
 
   def product_params
