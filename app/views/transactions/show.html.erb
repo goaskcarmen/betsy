@@ -12,10 +12,10 @@
     <p><%= i.product_quantity%> <%= i.product_name %> for <%= number_to_currency(i.product_total_price) %>
       <% if i.mark_shipped == false %>
         <%= button_to 'Mark as shipped', {action: "mark_shipped", id: i.id },
-            method: :mark_shipped %>
+            method: :mark_shipped, class="secondary button" %>
       <% else %>
         <%= button_to 'Mark as unshipped', {action: "mark_not_shipped", id: i.id },
-          method: :mark_not_shipped %>
+          method: :mark_not_shipped, class="secondary button" %>
       <% end %>
     </p>
   <% end  %>
