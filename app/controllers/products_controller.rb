@@ -1,14 +1,14 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   before_action :find_merchant
+  before_action :ensure_a_merchant, only: [:new, :create]
+  before_action :ensure_this_merchant, only: [:destroy, :edit, :update]
 
   def new
-    check_permissions("create")
     @product = Product.new
   end
 
   def create
-    check_permissions("create")
     @product = Product.new(product_params)
 
     if @product.save
@@ -19,7 +19,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-   check_permissions("delete")
     @product.destroy
 
     if @product.destroy
@@ -28,11 +27,10 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    check_permissions("edit")
   end
 
   def update
-    check_permissions("edit")
+    check_permissions
     @product.update(product_params)
     if @product.update(product_params)
      redirect_to product_path
@@ -49,19 +47,21 @@ class ProductsController < ApplicationController
   end
 
   private
-  def check_permissions(action)
-    if @merchant == nil
-      flash[:notice]= "you must be logged in as a merchant to #{action} products"
-      return redirect_to index_path
-    end
-  end
-
-  def find_merchant
-    @merchant = User.find_by(id: session[:user_id])
-  end
-
   def find_product
     @product = Product.find(params[:id].to_i)
+  end
+
+  def get_out
+     flash[:notice]= "you must be logged in as a merchant to do that"
+      return redirect_to :back
+  end
+
+  def ensure_a_merchant
+    get_out unless @user
+  end
+
+  def ensure_this_merchant
+    get_out unless @user == @product.user
   end
 
   def product_params
