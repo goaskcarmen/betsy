@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
-  before_action :find_merchant
   before_action :ensure_a_merchant, only: [:new, :create]
   before_action :ensure_this_merchant, only: [:destroy, :edit, :update]
 
