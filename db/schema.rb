@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025201017) do
+ActiveRecord::Schema.define(version: 20161028171210) do
 
   create_table "cart_products", force: :cascade do |t|
     t.integer  "product_quantity"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20161025201017) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.integer  "unit_price"
+    t.float    "unit_price"
     t.text     "description"
     t.string   "photo_url"
     t.integer  "quantity"
