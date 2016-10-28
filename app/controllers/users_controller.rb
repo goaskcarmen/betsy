@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if session[:auth_hash] == nil
       return redirect_to "/auth/github"
     end
-   
+
     #if they are already a current user, tell them so
     if User.find_by(uid: auth_hash['uid'], provider: 'github')
       flash[:notice]="You are already registered with github"
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     #if they have a github auth build potential user info from github auth
     @user=User.build_from_github(session[:auth_hash])
-    session[:cart_id]=@user.cart_id
+    
   end
 
   def create
