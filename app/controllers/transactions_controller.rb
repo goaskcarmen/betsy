@@ -56,16 +56,7 @@ class TransactionsController < ApplicationController
 
   def show_all
     @mytps = TransactionProduct.where(merchant_id: session[:user_id])
-
-    shipped = 0
-    not_shipped = 0
-    @mytps.each do |i|
-      if i.mark_shipped == true
-        shipped =+ 1
-      else
-        not_shipped =+1
-      end
-    end
+    
   end
 
   def mark_shipped
