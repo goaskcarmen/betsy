@@ -91,6 +91,7 @@ class CartsController < ApplicationController
   end
 
   private
+  #this method is never used
   def user_params
     params.require(:cart_product).permit(:product_quantity, :product_id, :cart_id)
   end
@@ -99,6 +100,7 @@ class CartsController < ApplicationController
     @product = Product.find(params[:id].to_i)
   end
 
+  #this method is never used
   def product_params
     params.require(:product).permit(:name, :description, :unit_price, :photo_url, :quantity)
   end
