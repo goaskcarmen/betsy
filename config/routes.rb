@@ -59,7 +59,7 @@ Rails.application.routes.draw do
 
 
 ################### REVIEWS ####################
-
+  #I think these should be deleted
   get 'reviews/new'
 
   get 'reviews/create'

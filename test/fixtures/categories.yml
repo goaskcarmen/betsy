@@ -1,7 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 
+  name: number one
 
-two:
-  name: MyString
+electronics:
+  name: electronics
+  products: couple_cases

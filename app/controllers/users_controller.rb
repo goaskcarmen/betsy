@@ -18,8 +18,7 @@ class UsersController < ApplicationController
     if session[:auth_hash] == nil
       return redirect_to "/auth/github"
     end
-    #User.all.each{|u|puts u.name}
-    #puts User.find_by(uid: auth_hash['uid'], provider: 'github').inspect
+   
     #if they are already a current user, tell them so
     if User.find_by(uid: auth_hash['uid'], provider: 'github')
       flash[:notice]="You are already registered with github"
