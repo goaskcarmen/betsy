@@ -1,3 +1,4 @@
+
 <section>
   <%= form_for @product do |f| %>
     <p><%= f.text_field :name, placeholder: "Name (require)" %></P>
@@ -7,6 +8,6 @@
     <p><%= f.text_area :description, rows:"5", placeholder: "Description" %></p>
     <p><%= f.text_field :photo_url, placeholder: "photo url" %></P>
 
-    <p><%= f.submit "Save" %></p>
+    <p><%= f.submit "Save", class: "secondary button" %></p>
   <% end %>
 </section>

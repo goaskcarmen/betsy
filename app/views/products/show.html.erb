@@ -10,7 +10,6 @@
 
       <h5 class="subheader">blah blah blah stuff about the category</h5>
     </div>
-    <a href="#"><div class="panel callout radius"><h6>something somthing...</h6></div></a>
   </div>
 
 
@@ -26,12 +25,12 @@
     </p>
     <p><%= @product.description %></p>
     <ul>
-      <li class="round button">
+      <button class="secondary button">
         <%=link_to "Add item to cart", create_cart_product_path(@product), method: :post %>
-      </li>
-      <li class="round button">
+      </button>
+      <button class="secondary button">
       <%= link_to "View my cart", show_cart_product_path, method: :get %>
-      </li>
+    </button>
     </ul>
   </div>
 </div>
@@ -46,19 +45,18 @@
 <% end %>
 <!-- dispaly all product's reviews here using @reviews.each do  -->
 <% @reviews.each do |r| %>
-  <ul>
-    <li>
-      pears grade:
+  <div class="panel callout radius">
+    <h6>pears grade:
       <% (r.rating).times do %>
       <%= "🍐" %>
       <% end %>
-    </li>
-    <li>
+    </h6>
+    <h6>
       review contect:
       <%= r.content %>
-    </li>
-  </ul>
-<% end %>
+    </h6>
+  </div>
+  <% end %>
 
 
 <!-- ONLY FOR MERCHANTS -->
