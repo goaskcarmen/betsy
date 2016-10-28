@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to product_path(@product.id)
     else
-      render :template => "products/show/#{@product.id}"
+      render :template => "products/show" #this should be changed to pass the tests
     end
   end
 

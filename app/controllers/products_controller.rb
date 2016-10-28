@@ -45,6 +45,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @review = Review.new
     @reviews = @product.reviews
+    @reviews=[] if @reviews==nil 
   end
 
   private
