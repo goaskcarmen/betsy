@@ -25,8 +25,7 @@ class HomepagesController < ApplicationController
       @most_pop="The most popular product is: #{@merchant_products.sample.name}"
       @products_intro="Here are #{@user_for_products.name}'s products "
     end
-    puts "user for products: #{@user_for_products}"
-    puts "user: #{@user.inspect}"
+    
     if @user_for_products==@user
       @is_my_page=true 
     else
