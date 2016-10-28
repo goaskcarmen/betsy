@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
     #if they have a github auth build potential user info from github auth
     @user=User.build_from_github(session[:auth_hash])
+    session[:cart_id]=@user.cart_id
   end
 
   def create
