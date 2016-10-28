@@ -22,7 +22,6 @@ class TransactionsController < ApplicationController
       @transaction.save
 
       @cart = CartProduct.where(cart_id: session[:cart_id])
-
       @cart.each do |i|
         q = i.product_quantity
         p = Product.find(i.product_id)
@@ -82,6 +81,7 @@ class TransactionsController < ApplicationController
   end
 
   private
+  #this method is never used...delete?
   def user_params
     params.require(:transaction).permit(:client_name, :client_email, :status, :client_address, :client_cc_num, :client_cc_exp)
   end

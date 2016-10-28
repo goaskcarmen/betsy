@@ -21,6 +21,7 @@ cookies:
   name: Chocolate Chip cookies
   unit_price: 1
   description: yum
+  quantity: 10
   photo_url: 
   categories: food
   user: :current_user
