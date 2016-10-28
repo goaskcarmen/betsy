@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  <!-- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %> -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </head>
@@ -25,7 +25,7 @@
 
             <ul class="title-area">
 <!-- link to homepage top left of top bar -->
-              <li class="name"><h1 class="blah"><%= link_to "Besty", index_path %></h1></li>
+              <li class="name"><h1 id="logo"><%= link_to "Besty", index_path %></h1></li>
             </ul>
 
             <section class="top-bar-section">
