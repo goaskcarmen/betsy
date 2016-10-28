@@ -56,7 +56,6 @@ class TransactionsController < ApplicationController
 
   def show_all
     @mytps = TransactionProduct.where(merchant_id: session[:user_id])
-
     
   end
 
