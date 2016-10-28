@@ -15,21 +15,21 @@ class ProductsControllerTest < ActionController::TestCase
 
   test "A guest/buyer cannot create a new product" do
     request.env["HTTP_REFERER"]="blah"
-    get :create #put vailid params here
+    post :create #put vailid params here
     assert_redirected_to "blah"
   end
 
   test "A merchant can create a new product if they put in valid info" do
     session[:user_id]= users(:current_user).id
     product_params={product:{name: "thing", unit_price: 2, quantity: 9}, user_id: users(:current_user).id}
-    get :create, product_params
+    post :create, product_params
     assert_redirected_to index_path
   end
 
   test "A merchant a product is not created unless it includes a quantity" do
     session[:user_id]= users(:current_user).id
     product_params={product:{name: "thing", unit_price: 2}, user_id: users(:current_user).id}
-    get :create, product_params
+    post :create, product_params
     assert_template :new
     assert_response :success
   end
@@ -52,21 +52,21 @@ class ProductsControllerTest < ActionController::TestCase
   test "you can update your products if you are logged in and it is your product" do
     session[:user_id]= users(:current_user).id
     product_params={id: products(:couple_cases), product:{name: "Couple Cell phone case", unit_price: 9, quantity: 3}, user_id: users(:current_user).id }
-    get :update, product_params
+    put :update, product_params
     assert_redirected_to product_path
   end
 
   test "you can't update your products if you aren't logged in/it isn't your product" do
     request.env["HTTP_REFERER"]="blah"
     product_params={id: products(:couple_cases), product:{name: "Couple Cell phone case", unit_price: 9, quantity: 3}, user_id: users(:current_user).id }
-    get :update, product_params
+    put :update, product_params
     assert_redirected_to "blah"
   end
 
   test "you can't update a product without valid fields" do
     session[:user_id]= users(:current_user).id
     product_params={id: products(:couple_cases), product:{name: nil, unit_price: 9, quantity: 3}, user_id: users(:current_user).id }
-    get :update, product_params
+    put :update, product_params
     assert_template :edit
     assert_response :success
   end
@@ -79,14 +79,14 @@ class ProductsControllerTest < ActionController::TestCase
  test "if you own a product, you can destroy it" do
       assert_difference('users(:current_user).products.count',-1) do
         session[:user_id]= users(:current_user).id
-        get :destroy, id: products(:couple_cases)
+        delete :destroy, id: products(:couple_cases)
         assert_redirected_to index_path
       end
   end
 
    test "if you don't own a product, you can't destroy it" do
       request.env["HTTP_REFERER"]="blah"
-      get :destroy, id: products(:rando)
+      delete :destroy, id: products(:rando)
       assert_redirected_to "blah"
   end
 end

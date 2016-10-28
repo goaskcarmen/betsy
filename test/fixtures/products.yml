@@ -16,3 +16,11 @@ rando:
   photo_url: MyString
   categories: miscellaneous
   user: :rando_guy
+
+cookies:
+  name: Chocolate Chip cookies
+  unit_price: 1
+  description: yum
+  photo_url: 
+  categories: food
+  user: :current_user
