@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 #Add simplecov for testing coverage
 #gem 'simplecov', :require => false, :group => :test
-#gem 'pg', group: :production
+gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 
 ######## ADDED GEMS #########
