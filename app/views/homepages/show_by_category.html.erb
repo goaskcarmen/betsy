@@ -7,9 +7,9 @@
       <%= image_tag "#{@cat.name}.jpg" %>
       <div class="hide-for-small panel">
         <h3><%= @cat.name %></h3>
-        <h5 class="subheader">blah blah blah stuff about the category</h5>
+        <h5 class="subheader"></h5>
       </div>
-      <a href="#"><div class="panel callout radius"><h6>something somthing...</h6></div></a>
+      <a href="#"><div class="panel callout radius"><h6><%= "Take a look at the #{@cat_products.sample.name}" %></h6></div></a>
     </div>
   </div>
 
